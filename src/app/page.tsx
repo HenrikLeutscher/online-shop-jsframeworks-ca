@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ProductsResponse, Product } from "./types/product";
 import AddToCartButton from "./components/AddToCartButton";
+import DiscountProduct from "./components/DiscountProduct";
 
 export default async function Home() {
   const response = await fetch("https://v2.api.noroff.dev/online-shop");
@@ -21,30 +21,41 @@ export default async function Home() {
 
   return (
     <main className="py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
-        {products.map((product: Product) => (
-          <Link key={product.id} href={`/${product.id}`} className="bg-blue-200 text-black p-5 m-5 rounded-2xl">
-            <img src={product.image.url} alt={product.image.alt} className="w-full h-50 object-cover rounded-t-2xl"/>
-            <h2 className="font-bold">{product.title}</h2>
-              {product.discountedPrice < product.price ? (
-                <div className="mt-4">
-                  <p className="text-lg line-through italic">
-                    <strong>{product.price} kr</strong>
-                  </p>
-                  <p className="text-lg">
-                    <strong>{product.discountedPrice} kr</strong>
-                  </p>
-                </div>
-              ) : (
-                <div className="mt-4">
-                  <p className="text-lg">
-                    <strong>{product.price} kr</strong>
-                  </p>
-                </div>
-              )}
+      {products.map((product: Product) => (
+        <Link
+          key={product.id}
+          href={`/${product.id}`}
+          className="bg-blue-200 text-black p-5 m-5 rounded-2xl"
+        >
+          <div className="relative">
+            <DiscountProduct product={product} />
+          </div>
+          <img
+            src={product.image.url}
+            alt={product.image.alt}
+            className="w-full h-50 object-cover rounded-t-2xl"
+          />
+          <h2 className="font-bold">{product.title}</h2>
+          {product.discountedPrice < product.price ? (
+            <div className="mt-4">
+              <p className="text-lg line-through italic">
+                <strong>{product.price} kr</strong>
+              </p>
+              <p className="text-lg">
+                <strong>{product.discountedPrice} kr</strong>
+              </p>
+            </div>
+          ) : (
+            <div className="mt-4">
+              <p className="text-lg">
+                <strong>{product.price} kr</strong>
+              </p>
+            </div>
+          )}
 
-            <AddToCartButton product={product} />
-          </Link>
-        ))}
+          <AddToCartButton product={product} />
+        </Link>
+      ))}
     </main>
-  )
+  );
 }
