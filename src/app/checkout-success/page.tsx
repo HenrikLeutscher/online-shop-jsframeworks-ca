@@ -13,7 +13,7 @@ export default function CheckoutSuccess() {
   }, [clearCart]);
 
   return (
-    <main className="p-4 max-w-3xl mx-auto text-center">
+    <main className="p-4 max-w-3xl mx-auto text-center min-h-screen">
       <h1 className="text-2xl font-bold">Checkout Successful!</h1>
       <p className="mt-4">Thank you for your purchase!</p>
       <p className="mt-4">You will receive a confirmation email shortly.</p>

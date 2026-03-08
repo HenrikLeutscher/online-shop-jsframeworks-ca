@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import SearchBar from "./SearchBar";
 import { useState, useRef, useEffect } from "react";
 import CartPersist from "./CartPersist";
 import { useCartStore } from "../stores/cartStore";
@@ -95,7 +94,6 @@ export function Header() {
           Contact
         </Link>
       </nav>
-      <SearchBar />
       <DropDown />
       <CartPersist />
     </header>

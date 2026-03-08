@@ -17,7 +17,9 @@ export default function AddToCartButton({ product }: { product: Product }) {
     <div className="mt-2">
       <button
         type="button"
-        onClick={() => {
+        onClick={(event) => {
+          event?.preventDefault();
+          event.stopPropagation();
           addItem(product);
           showMessage("Product Added to cart");
         }}
@@ -27,7 +29,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
       </button>
 
       {message && (
-        <div className="mt-2 text-sm text-white bg-green-500 px-2 py-1 rounded w-1/3">
+        <div className="mt-2 text-sm text-white bg-green-500 px-2 py-1 rounded">
           {message}
         </div>
       )}
