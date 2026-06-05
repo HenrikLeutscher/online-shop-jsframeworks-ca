@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { SearchBarProps } from "../types/searchbar";
+import Image from "next/image";
 
 export default function SearchBar({ products }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,12 +17,12 @@ export default function SearchBar({ products }: SearchBarProps) {
       <input
         type="text"
         placeholder="Search products..."
-        className="border p-2 w-1/2 rounded mx-auto"
+        className="border border-primary p-2 w-1/2 rounded mx-auto"
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
       />
       {searchTerm.trim() !== "" && (
-        <div className="absolute left-0 right-0 top-35 mt-2 bg-white border rounded shadow z-20 w-full max-h-120 overflow-y-auto  md:max-w-1/2 mx-auto">
+        <div className="absolute left-0 right-0 top-42 mt-2 bg-background border border-primary rounded shadow z-20 w-full max-h-120 overflow-y-auto  md:max-w-1/2 mx-auto">
           <p className="text-black italic opacity-50">
             Showing{" "}
             <span className="font-bold underline">
@@ -40,9 +41,11 @@ export default function SearchBar({ products }: SearchBarProps) {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       src={product.image.url}
                       alt={product.image.alt}
+                      width={40}
+                      height={40}
                       className="w-10 h-10 object-cover"
                     />
                     {product.title}

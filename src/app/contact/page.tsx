@@ -51,52 +51,61 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="bg-gray-300 p-6 text-black min-h-screen">
+    <main className="bg-background p-6 text-black min-h-screen">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 md:max-w-1/2 mx-auto"
       >
-        <h1 className="font-bold">Contact Us</h1>
+        <h1 className="font-bold text-center">Contact Us</h1>
         <div className="flex flex-col">
-          <label htmlFor="fullName">Full Name:</label>
+          <label htmlFor="fullName" className="inputLabels">
+            Full Name:
+          </label>
           <input
             type="text"
             id="fullName"
             name="fullName"
-            className="border-2 border-blue-500"
+            className="inputFields"
+            placeholder="Enter your full name"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="subject">Subject:</label>
+          <label htmlFor="subject" className="inputLabels">
+            Subject:
+          </label>
           <input
             type="text"
             id="subject"
             name="subject"
-            className="border-2 border-blue-500"
+            className="inputFields"
+            placeholder="What is your inquiry about?"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email" className="inputLabels">
+            Email:
+          </label>
           <input
             type="email"
             id="email"
             name="email"
-            className="border-2 border-blue-500"
+            className="inputFields"
+            placeholder="Enter your email address"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="message">Message:</label>
+          <label htmlFor="message" className="inputLabels">
+            Message:
+          </label>
           <textarea
             id="message"
             name="message"
             rows={5}
-            className="border-2 border-blue-500"
+            className="inputFields"
+            placeholder="Enter your message here"
           />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
+        <button type="submit" className="bg-brand text-white px-4 py-2 rounded">
           Send Message
         </button>
       </form>

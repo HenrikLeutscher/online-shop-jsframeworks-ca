@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import CartPersist from "./CartPersist";
 import { useCartStore } from "../stores/cartStore";
+import NexoraLogo from "../../assets/img/Nexora2.png";
 
 // Dropdown component for mobile view
 function DropDown() {
@@ -30,10 +32,13 @@ function DropDown() {
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative md:hidden">
+    <div
+      ref={dropdownRef}
+      className="relative md:hidden flex justify-end w-full"
+    >
       <button onClick={() => isOpen(!open)} className="p-2 rounded">
         {count > 0 && (
-          <span className="fixed top-2 right-2 border-2 border-green-500 rounded-full px-2">
+          <span className="fixed top-2 right-2 bg-white text-brand rounded-full px-2">
             {count}
           </span>
         )}
@@ -50,19 +55,19 @@ function DropDown() {
       </button>
 
       {open && (
-        <div className="absolute right-0 z-10 w-48 bg-blue-500 border border-gray-200 rounded-md shadow-lg">
-          <Link href="/" className="block px-4 py-2 hover:bg-blue-800">
+        <div className="absolute right-0 top-20 z-10 w-full bg-brand border border-border rounded-md shadow-lg">
+          <Link href="/" className="block px-4 py-2 navText">
             Home
           </Link>
-          <Link href="/cart" className="block px-4 py-2 hover:bg-blue-800">
+          <Link href="/cart" className="block px-4 py-2 navText">
             Cart{" "}
             {count > 0 && (
-              <span className="border-2 border-green-500 rounded-full px-2 py-1">
+              <span className="rounded-full bg-white px-2 py-0.5 text-xs font-bold text-brand">
                 {count}
               </span>
             )}
           </Link>
-          <Link href="/contact" className="block px-4 py-2 hover:bg-blue-800">
+          <Link href="/contact" className="block px-4 py-2 navText">
             Contact
           </Link>
         </div>
@@ -76,23 +81,24 @@ export function Header() {
   const count = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <header className="flex flex-row md:flex-col bg-blue-500 md:text-center py-4 justify-between items-center px-5">
+    <header className="flex flex-row bg-brand md:text-center py-4 items-center px-5 text-white justify-between">
       <Link href="/">
-        <h1 className="font-bold">Online Shop</h1>
+        <h1 className="sr-only">Nexora</h1>
+        <Image src={NexoraLogo} alt="Nexora" width={100} height={50} />
       </Link>
       <nav className="hidden md:flex gap-5 justify-center pb-2">
-        <Link href="/" className="hover:underline">
+        <Link href="/" className="navText">
           Home
         </Link>
-        <Link href="/cart" className="hover:underline">
+        <Link href="/cart" className="navText">
           Cart{" "}
           {count > 0 && (
-            <span className="border-2 border-green-500 rounded-full px-2 py-1">
+            <span className="rounded-full bg-white px-2 py-0.5 text-xs font-bold text-brand">
               {count}
             </span>
           )}
         </Link>
-        <Link href="/contact" className="hover:underline">
+        <Link href="/contact" className="navText">
           Contact
         </Link>
       </nav>

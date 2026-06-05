@@ -13,16 +13,20 @@ export default function CheckoutSuccess() {
   }, [clearCart]);
 
   return (
-    <main className="p-4 max-w-3xl mx-auto text-center min-h-screen">
-      <h1 className="text-2xl font-bold">Checkout Successful!</h1>
-      <p className="mt-4">Thank you for your purchase!</p>
-      <p className="mt-4">You will receive a confirmation email shortly.</p>
-      <Link
-        href="/"
-        className="text-blue-500 hover:underline mt-4 inline-block"
-      >
-        <ContinueShopping />
-      </Link>
+    <main className="min-h-screen bg-background px-4 py-10 text-text">
+      <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-surface p-6 shadow-sm text-center">
+        <h1 className="text-3xl font-bold text-text">Checkout Successful!</h1>
+        <p className="mt-4 text-text-muted">Thank you for your purchase!</p>
+        <p className="mt-4 text-text-muted">
+          Your order has been received and is being processed.
+        </p>
+        <p className="mt-4 text-text-muted">
+          You will receive a confirmation email shortly.
+        </p>
+        <Link href="/" className="mt-4 inline-block">
+          <ContinueShopping />
+        </Link>
+      </div>
     </main>
   );
 }
