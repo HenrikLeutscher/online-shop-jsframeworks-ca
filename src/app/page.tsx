@@ -4,6 +4,7 @@ import AddToCartButton from "./components/AddToCartButton";
 import DiscountProduct from "./components/DiscountProduct";
 import SearchBar from "./components/SearchBar";
 import StarsRating from "./components/StarsRating";
+import Image from "next/image";
 
 export default async function Home() {
   const response = await fetch("https://v2.api.noroff.dev/online-shop");
@@ -29,23 +30,25 @@ export default async function Home() {
           <Link
             key={product.id}
             href={`/${product.id}`}
-            className="bg-blue-200 text-black p-5 m-5 rounded-2xl"
+            className="productCard"
           >
             <div className="relative">
               <DiscountProduct product={product} />
             </div>
-            <img
+            <Image
               src={product.image.url}
               alt={product.image.alt}
+              width={400}
+              height={300}
               className="w-full h-50 object-cover rounded-t-2xl"
             />
             <h2 className="font-bold">{product.title}</h2>
             {product.discountedPrice < product.price ? (
               <div className="mt-4">
-                <p className="text-lg line-through italic">
+                <p className="text-text-muted line-through">
                   <strong>{product.price} kr</strong>
                 </p>
-                <p className="text-lg">
+                <p className="text-lg text-sale font-bold">
                   <strong>{product.discountedPrice} kr</strong>
                 </p>
               </div>
@@ -59,9 +62,11 @@ export default async function Home() {
             {product.rating > 0 ? (
               <StarsRating rating={product.rating} />
             ) : (
-              <p>No Rating(s)</p>
+              <p className="text-text-muted">No Rating(s)</p>
             )}
-            <AddToCartButton product={product} />
+            <div className="mt-auto">
+              <AddToCartButton product={product} />
+            </div>
           </Link>
         ))}
       </div>

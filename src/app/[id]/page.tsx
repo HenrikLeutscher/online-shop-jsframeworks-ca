@@ -17,69 +17,80 @@ export default async function ProductPage({
   const product = json.data;
 
   return (
-    <main className="mx-auto min-h-screen">
-      <div className="p-4 md:max-w-full flex flex-col gap-2 md:gap-6 md:items-center">
-        <div className="flex flex-col md:flex-row gap-5 md:gap-10">
-          <div className="mt-4 gap-4 md:gap-10">
+    <main className="mx-auto min-h-screen text-text">
+      <div className="mx-auto max-w-6xl px-4 py-10">
+        <div className="grid gap-8 rounded-2xl border border-border bg-surface p-6 shadow-sm md:grid-cols-2 md:p-8">
+          <div className="overflow-x-hidden rounded-2xl border border-border bg-surface h-110">
             <img
               src={product.image.url}
               alt={product.image.alt}
-              className="h-100 object-cover w-full"
+              className="h-full object-cover w-full"
             />
           </div>
-          <div className="mt-4">
-            <h1 className="text-2xl font-bold">{product.title}</h1>
+          <div>
+            <h1 className="text-3xl font-bold text-text">{product.title}</h1>
+
             {product.discountedPrice < product.price ? (
               <div className="mt-4">
-                <p className="text-lg line-through italic">
+                <p className="text-text-muted line-through">
                   <strong>{product.price} kr</strong>
                 </p>
-                <p className="text-lg">
+                <p className="text-2xl font-bold text-sale">
                   <strong>{product.discountedPrice} kr</strong>
                 </p>
               </div>
             ) : (
-              <div className="mt-4">
-                <p className="text-lg">
-                  <strong>{product.price} kr</strong>
-                </p>
-              </div>
+              <p className="mt-4 text-2xl font-bold text-text">
+                {product.price} kr
+              </p>
             )}
-            <div className="mt-4">
-              <h2 className="text-xl font-bold">Product Description:</h2>
-              <p>{product.description}</p>
+            <div className="mt-6">
+              <h2 className="text-lg font-semibold text-text">
+                Product Description:
+              </h2>
+              <p className="mt-2 text-text-muted">{product.description}</p>
             </div>
-            <div className="py-5">
-              <h3 className="text-lg font-bold">Product Tags</h3>
-              {product.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-sm mr-2"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold text-text">Product Tags</h3>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {product.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-border bg-background px-3 py-1 text-sm text-text-muted"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-            <StarsRating rating={product.rating} />
-            <AddToCartButton product={product} />
+            <div className="mt-6">
+              <StarsRating rating={product.rating} />
+            </div>
+            <div className="mt-6">
+              <AddToCartButton product={product} />
+            </div>
           </div>
         </div>
         <div>
           {product.reviews && product.reviews.length > 0 && (
-            <div>
-              <h3>Customer reviews:</h3>
-              <ul>
+            <section className="mt-8 rounded-2xl border border-border bg-surface p-6 shadow-sm">
+              <h3 className="text-xl font-bold text-text">Customer reviews</h3>
+              <ul className="mt-4 grid gap-4">
                 {product.reviews.map((reviews) => (
                   <li
                     key={reviews.id}
-                    className="bg-blue-500 rounded-xl p-4 mb-2"
+                    className="rounded-xl border border-border bg-background p-4"
                   >
-                    <p className="font-bold">{reviews.username}</p>
-                    <p>{reviews.description}</p>
+                    <p className="font-semibold text-text">
+                      {reviews.username}
+                    </p>
+                    <p className="mt-1 text-text-muted">
+                      {reviews.description}
+                    </p>
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           )}
         </div>
       </div>

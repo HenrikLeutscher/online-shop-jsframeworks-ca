@@ -14,8 +14,8 @@ export default function DiscountProduct({ product }: { product: Product }) {
   if (!hasDiscount) return null;
 
   return (
-    <span className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded">
-      {discountPercentage}% OFF
+    <span className="absolute top-3 right-3 rounded-xl bg-sale text-white px-2 py-1 text-sm font-semibold">
+      -{discountPercentage}% OFF
     </span>
   );
 }

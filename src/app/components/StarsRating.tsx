@@ -5,9 +5,12 @@ export default function StarsRating({ rating }: StarsRatingsProps) {
   const emptyStars = "☆".repeat(5 - Math.round(rating));
 
   return (
-    <div className="text-yellow-500">
-      <span>{filledStars}</span>
-      <span>{emptyStars}</span>
+    <div className="flex items-center gap-2">
+      <span className="text-amber-500 text-lg">
+        {filledStars}
+        {emptyStars}
+      </span>
+      <span className="text-sm text-text-muted">({rating.toFixed(1)})</span>
     </div>
   );
 }

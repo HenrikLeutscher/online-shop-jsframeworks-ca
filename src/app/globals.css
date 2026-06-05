@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Backgrounds */
+  --color-background: #F4F4F5;
+  --color-surface: #FFFFFF;
+
+  /* Text */
+  --color-text: #111827;
+  --color-text-muted: #6B7280;
+
+  /* Borders */
+  --color-border: #D1D5DB;
+
+  /* Brand */
+  --color-brand: #230C55;
+  --color-cta: #3B1E77;
+  --color-cta-hover: #4A2596;
+
+  /* Buttons */
+  --color-button: #111111;
+  --color-button-hover: #27272A;
+  --color-button-text: #FFFFFF;
+
+  /* States */
+  --color-sale: #DC2626;
+  --color-success: #16A34A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer components {
+  .navText {
+    @apply text-white text-lg font-medium transition-colors;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ededed;
+    @variant hover {
+      @apply text-gray-300;
+    }
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .productCard {
+    @apply flex flex-col rounded-2xl border border-border bg-surface p-5 shadow-sm transition-all;
+
+    @variant hover {
+      @apply shadow-xl;
+    }
+  }
+
+  .inputFields {
+    @apply border-2 border-border rounded-lg p-2;
+
+    @variant focus {
+      @apply border-brand/80 outline-none;
+    }
+  }
+
+  .inputLabels {
+    @apply font-bold mb-1;
+  }
+
+  .ctaButton {
+    @apply bg-cta text-white px-4 py-2 rounded;
+
+    @variant hover {
+      @apply bg-cta-hover;
+    }
+  }
 }
