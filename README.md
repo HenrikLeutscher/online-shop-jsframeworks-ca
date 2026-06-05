@@ -1,6 +1,6 @@
 # FED2 JavaScript FrameWorks Course Assignment
 
-![Project Teaser (Image will be added)]()
+<img width="1920" height="1080" alt="Nexora" src="https://github.com/user-attachments/assets/45883feb-58cc-47ed-98f9-03d28e55dd9f" />
 
 Deployed Live Website:
 https://fed2-jsframeworks-ca.netlify.app/
